@@ -21,7 +21,7 @@ require (
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.51.0
 	go.opentelemetry.io/contrib/propagators/aws v1.26.0
 	go.opentelemetry.io/contrib/propagators/b3 v1.26.0
-	go.opentelemetry.io/contrib/propagators/jaeger v1.24.0
+	go.opentelemetry.io/contrib/propagators/jaeger v1.26.0
 	go.opentelemetry.io/contrib/propagators/ot v1.26.0
 	go.opentelemetry.io/otel v1.26.0
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.26.0
