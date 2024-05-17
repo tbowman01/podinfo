@@ -1,10 +1,10 @@
 # podinfo
 
-[![e2e](https://github.com/stefanprodan/podinfo/workflows/e2e/badge.svg)](https://github.com/stefanprodan/podinfo/blob/master/.github/workflows/e2e.yml)
-[![test](https://github.com/stefanprodan/podinfo/workflows/test/badge.svg)](https://github.com/stefanprodan/podinfo/blob/master/.github/workflows/test.yml)
-[![cve-scan](https://github.com/stefanprodan/podinfo/workflows/cve-scan/badge.svg)](https://github.com/stefanprodan/podinfo/blob/master/.github/workflows/cve-scan.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/stefanprodan/podinfo)](https://goreportcard.com/report/github.com/stefanprodan/podinfo)
-[![Docker Pulls](https://img.shields.io/docker/pulls/stefanprodan/podinfo)](https://hub.docker.com/r/stefanprodan/podinfo)
+[![e2e](https://github.com/tbowman01/podinfo/workflows/e2e/badge.svg)](https://github.com/tbowman01/podinfo/blob/master/.github/workflows/e2e.yml)
+[![test](https://github.com/tbowman01/podinfo/workflows/test/badge.svg)](https://github.com/tbowman01/podinfo/blob/master/.github/workflows/test.yml)
+[![cve-scan](https://github.com/tbowman01/podinfo/workflows/cve-scan/badge.svg)](https://github.com/tbowman01/podinfo/blob/master/.github/workflows/cve-scan.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/tbowman01/podinfo)](https://goreportcard.com/report/github.com/tbowman01/podinfo)
+[![Docker Pulls](https://img.shields.io/docker/pulls/tbowman01/podinfo)](https://hub.docker.com/r/tbowman01/podinfo)
 
 Podinfo is a tiny web application made with Go that showcases best practices of running microservices in Kubernetes.
 Podinfo is used by CNCF projects like [Flux](https://github.com/fluxcd/flux2) and [Flagger](https://github.com/fluxcd/flagger)
