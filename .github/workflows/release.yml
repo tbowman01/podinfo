@@ -93,35 +93,35 @@ jobs:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      - name: Publish Timoni module to GHCR
-        run: |
-          timoni mod push ./timoni/podinfo oci://ghcr.io/tbowman01/modules/podinfo \
-          --sign cosign \
-          --version ${{ steps.prep.outputs.VERSION }} \
-          -a 'org.opencontainers.image.source=https://github.com/tbowman01/podinfo' \
-          -a 'org.opencontainers.image.licenses=Apache-2.0' \
-          -a 'org.opencontainers.image.description=A timoni.sh module for deploying Podinfo.' \
-          -a 'org.opencontainers.image.documentation=https://github.com/tbowman01/podinfo/blob/main/timoni/podinfo/README.md'
-      - name: Publish Helm chart to GHCR
-        run: |
-          helm package charts/podinfo
-          helm push podinfo-${{ steps.prep.outputs.VERSION }}.tgz oci://ghcr.io/tbowman01/charts
-          rm podinfo-${{ steps.prep.outputs.VERSION }}.tgz
-      - name: Publish Flux OCI artifact to GHCR
-        run: |
-          flux push artifact oci://ghcr.io/tbowman01/manifests/podinfo:${{ steps.prep.outputs.VERSION }} \
-            --path="./kustomize" \
-            --source="${{ github.event.repository.html_url }}" \
-            --revision="${GITHUB_REF_NAME}/${GITHUB_SHA}"
-          flux tag artifact oci://ghcr.io/tbowman01/manifests/podinfo:${{ steps.prep.outputs.VERSION }} --tag latest
+      # - name: Publish Timoni module to GHCR
+      #   run: |
+      #     timoni mod push ./timoni/podinfo oci://ghcr.io/tbowman01/modules/podinfo \
+      #     --sign cosign \
+      #     --version ${{ steps.prep.outputs.VERSION }} \
+      #     -a 'org.opencontainers.image.source=https://github.com/tbowman01/podinfo' \
+      #     -a 'org.opencontainers.image.licenses=Apache-2.0' \
+      #     -a 'org.opencontainers.image.description=A timoni.sh module for deploying Podinfo.' \
+      #     -a 'org.opencontainers.image.documentation=https://github.com/tbowman01/podinfo/blob/main/timoni/podinfo/README.md'
+      # - name: Publish Helm chart to GHCR
+      #   run: |
+      #     helm package charts/podinfo
+      #     helm push podinfo-${{ steps.prep.outputs.VERSION }}.tgz oci://ghcr.io/tbowman01/charts
+      #     rm podinfo-${{ steps.prep.outputs.VERSION }}.tgz
+      # - name: Publish Flux OCI artifact to GHCR
+      #   run: |
+      #     flux push artifact oci://ghcr.io/tbowman01/manifests/podinfo:${{ steps.prep.outputs.VERSION }} \
+      #       --path="./kustomize" \
+      #       --source="${{ github.event.repository.html_url }}" \
+      #       --revision="${GITHUB_REF_NAME}/${GITHUB_SHA}"
+      #     flux tag artifact oci://ghcr.io/tbowman01/manifests/podinfo:${{ steps.prep.outputs.VERSION }} --tag latest
       - name: Sign artifacts with Cosign
         env:
           COSIGN_EXPERIMENTAL: 1
         run: |
           cosign sign docker.io/tbowman01/podinfo:${{ steps.prep.outputs.VERSION }} --yes
-          cosign sign ghcr.io/tbowman01/podinfo:${{ steps.prep.outputs.VERSION }} --yes
-          cosign sign ghcr.io/tbowman01/charts/podinfo:${{ steps.prep.outputs.VERSION }} --yes
-          cosign sign ghcr.io/tbowman01/manifests/podinfo:${{ steps.prep.outputs.VERSION }} --yes
+          # cosign sign ghcr.io/tbowman01/podinfo:${{ steps.prep.outputs.VERSION }} --yes
+          # cosign sign ghcr.io/tbowman01/charts/podinfo:${{ steps.prep.outputs.VERSION }} --yes
+          # cosign sign ghcr.io/tbowman01/manifests/podinfo:${{ steps.prep.outputs.VERSION }} --yes
       - name: Publish base image
         uses: docker/build-push-action@v5
         with:
