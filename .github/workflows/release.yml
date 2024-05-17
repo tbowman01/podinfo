@@ -73,8 +73,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            docker.io/stefanprodan/podinfo
-            ghcr.io/stefanprodan/podinfo
+            docker.io/tbowman01/podinfo
+            ghcr.io/tbowman01/podinfo
           tags: |
             type=raw,value=${{ steps.prep.outputs.VERSION }}
             type=raw,value=latest
@@ -94,33 +94,33 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
       - name: Publish Timoni module to GHCR
         run: |
-          timoni mod push ./timoni/podinfo oci://ghcr.io/stefanprodan/modules/podinfo \
+          timoni mod push ./timoni/podinfo oci://ghcr.io/tbowman01/modules/podinfo \
           --sign cosign \
           --version ${{ steps.prep.outputs.VERSION }} \
-          -a 'org.opencontainers.image.source=https://github.com/stefanprodan/podinfo' \
+          -a 'org.opencontainers.image.source=https://github.com/tbowman01/podinfo' \
           -a 'org.opencontainers.image.licenses=Apache-2.0' \
           -a 'org.opencontainers.image.description=A timoni.sh module for deploying Podinfo.' \
-          -a 'org.opencontainers.image.documentation=https://github.com/stefanprodan/podinfo/blob/main/timoni/podinfo/README.md'
+          -a 'org.opencontainers.image.documentation=https://github.com/tbowman01/podinfo/blob/main/timoni/podinfo/README.md'
       - name: Publish Helm chart to GHCR
         run: |
           helm package charts/podinfo
-          helm push podinfo-${{ steps.prep.outputs.VERSION }}.tgz oci://ghcr.io/stefanprodan/charts
+          helm push podinfo-${{ steps.prep.outputs.VERSION }}.tgz oci://ghcr.io/tbowman01/charts
           rm podinfo-${{ steps.prep.outputs.VERSION }}.tgz
       - name: Publish Flux OCI artifact to GHCR
         run: |
-          flux push artifact oci://ghcr.io/stefanprodan/manifests/podinfo:${{ steps.prep.outputs.VERSION }} \
+          flux push artifact oci://ghcr.io/tbowman01/manifests/podinfo:${{ steps.prep.outputs.VERSION }} \
             --path="./kustomize" \
             --source="${{ github.event.repository.html_url }}" \
             --revision="${GITHUB_REF_NAME}/${GITHUB_SHA}"
-          flux tag artifact oci://ghcr.io/stefanprodan/manifests/podinfo:${{ steps.prep.outputs.VERSION }} --tag latest
+          flux tag artifact oci://ghcr.io/tbowman01/manifests/podinfo:${{ steps.prep.outputs.VERSION }} --tag latest
       - name: Sign artifacts with Cosign
         env:
           COSIGN_EXPERIMENTAL: 1
         run: |
-          cosign sign docker.io/stefanprodan/podinfo:${{ steps.prep.outputs.VERSION }} --yes
-          cosign sign ghcr.io/stefanprodan/podinfo:${{ steps.prep.outputs.VERSION }} --yes
-          cosign sign ghcr.io/stefanprodan/charts/podinfo:${{ steps.prep.outputs.VERSION }} --yes
-          cosign sign ghcr.io/stefanprodan/manifests/podinfo:${{ steps.prep.outputs.VERSION }} --yes
+          cosign sign docker.io/tbowman01/podinfo:${{ steps.prep.outputs.VERSION }} --yes
+          cosign sign ghcr.io/tbowman01/podinfo:${{ steps.prep.outputs.VERSION }} --yes
+          cosign sign ghcr.io/tbowman01/charts/podinfo:${{ steps.prep.outputs.VERSION }} --yes
+          cosign sign ghcr.io/tbowman01/manifests/podinfo:${{ steps.prep.outputs.VERSION }} --yes
       - name: Publish base image
         uses: docker/build-push-action@v5
         with:
@@ -129,38 +129,38 @@ jobs:
           context: .
           platforms: linux/amd64
           file: ./Dockerfile.base
-          tags: docker.io/stefanprodan/podinfo-base:latest
+          tags: docker.io/tbowman01/podinfo-base:latest
       - name: Publish helm chart
-        uses: stefanprodan/helm-gh-pages@master
+        uses: tbowman01/helm-gh-pages@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish config artifact
         run: |
-          flux push artifact oci://ghcr.io/stefanprodan/podinfo-deploy:${{ steps.prep.outputs.VERSION }} \
+          flux push artifact oci://ghcr.io/tbowman01/podinfo-deploy:${{ steps.prep.outputs.VERSION }} \
             --path="./kustomize" \
             --source="${{ github.event.repository.html_url }}" \
             --revision="${GITHUB_REF_NAME}/${GITHUB_SHA}"
-          flux tag artifact oci://ghcr.io/stefanprodan/podinfo-deploy:${{ steps.prep.outputs.VERSION }} --tag latest
+          flux tag artifact oci://ghcr.io/tbowman01/podinfo-deploy:${{ steps.prep.outputs.VERSION }} --tag latest
       - name: Sign config artifact with cso
         run: |
           echo "$COSIGN_KEY" > /tmp/cosign.key
-          cosign sign -key /tmp/cosign.key ghcr.io/stefanprodan/podinfo-deploy:${{ steps.prep.outputs.VERSION }} --yes
-          cosign sign -key /tmp/cosign.key ghcr.io/stefanprodan/podinfo-deploy:latest --yes
+          cosign sign -key /tmp/cosign.key ghcr.io/tbowman01/podinfo-deploy:${{ steps.prep.outputs.VERSION }} --yes
+          cosign sign -key /tmp/cosign.key ghcr.io/tbowman01/podinfo-deploy:latest --yes
         env:
           COSIGN_PASSWORD: ${{secrets.COSIGN_PASSWORD}}
           COSIGN_KEY: ${{secrets.COSIGN_KEY}}
       - name: Sign artifacts with Notation
         run: |
-          notation sign --signature-format cose ghcr.io/stefanprodan/podinfo:${{ steps.prep.outputs.VERSION }}
-          notation sign --signature-format cose ghcr.io/stefanprodan/charts/podinfo:${{ steps.prep.outputs.VERSION }}
-          notation sign --signature-format cose ghcr.io/stefanprodan/manifests/podinfo:${{ steps.prep.outputs.VERSION }}
-          notation sign --signature-format cose ghcr.io/stefanprodan/podinfo-deploy:${{ steps.prep.outputs.VERSION }}
-          notation sign --signature-format cose ghcr.io/stefanprodan/podinfo-deploy:latest
+          notation sign --signature-format cose ghcr.io/tbowman01/podinfo:${{ steps.prep.outputs.VERSION }}
+          notation sign --signature-format cose ghcr.io/tbowman01/charts/podinfo:${{ steps.prep.outputs.VERSION }}
+          notation sign --signature-format cose ghcr.io/tbowman01/manifests/podinfo:${{ steps.prep.outputs.VERSION }}
+          notation sign --signature-format cose ghcr.io/tbowman01/podinfo-deploy:${{ steps.prep.outputs.VERSION }}
+          notation sign --signature-format cose ghcr.io/tbowman01/podinfo-deploy:latest
       - uses: ./.github/actions/release-notes
       - name: Generate release notes
         run: |
           echo 'CHANGELOG' > /tmp/release.txt
-          github-release-notes -org stefanprodan -repo podinfo -since-latest-release >> /tmp/release.txt
+          github-release-notes -org tbowman01 -repo podinfo -since-latest-release >> /tmp/release.txt
       - name: Publish release
         uses: goreleaser/goreleaser-action@v5
         with:
