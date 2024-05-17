@@ -4,6 +4,8 @@
 [![test](https://github.com/tbowman01/podinfo/workflows/test/badge.svg)](https://github.com/tbowman01/podinfo/blob/master/.github/workflows/test.yml)
 [![cve-scan](https://github.com/tbowman01/podinfo/workflows/cve-scan/badge.svg)](https://github.com/tbowman01/podinfo/blob/master/.github/workflows/cve-scan.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/tbowman01/podinfo)](https://goreportcard.com/report/github.com/tbowman01/podinfo)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/ossf/scorecard/badge)](https://scorecard.dev/viewer/?uri=github.com/tbowman01/podinfo)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/8956/badge)](https://www.bestpractices.dev/projects/8956)
 [![Docker Pulls](https://img.shields.io/docker/pulls/tbowman01/podinfo)](https://hub.docker.com/r/tbowman01/podinfo)
 
 Podinfo is a tiny web application made with Go that showcases best practices of running microservices in Kubernetes.
