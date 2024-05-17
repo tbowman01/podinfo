@@ -4,7 +4,7 @@ go 1.22
 
 require (
 	github.com/chzyer/readline v1.5.1
-	github.com/fatih/color v1.16.0
+	github.com/fatih/color v1.17.0
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/gomodule/redigo v1.9.2
