@@ -131,8 +131,8 @@ github.com/swaggo/http-swagger v1.3.4/go.mod h1:9dAh0unqMBAlbp1uE2Uc2mQTxNMU/ha4
 github.com/swaggo/swag v1.16.3 h1:PnCYjPCah8FK4I26l2F/KQ4yz3sILcVUN3cTlBFA9Pg=
 github.com/swaggo/swag v1.16.3/go.mod h1:DImHIuOFXKpMFAQjcC7FG4m3Dg4+QuUgUzJmKjI/gRk=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
-go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux v0.49.0 h1:h+c4WbSjBBc3j+IsxwB2mWvkm2nDh0SyGLa5Y5+V9cw=
-go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux v0.49.0/go.mod h1:FObmJ0epY1FcwMR7aq7sRkrCfwwV3d0GBGFfyV5JUBg=
+go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux v0.51.0 h1:rXpHmgy1pMXlfv3W1T5ctoDA3QeTFjNq/YwCmwrfr8Q=
+go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux v0.51.0/go.mod h1:9uIRD3NZrM7QMQEGeKhr7V4xSDTMku3MPOVs8iZ3VVk=
 go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace v0.49.0 h1:RtcvQ4iw3w9NBB5yRwgA4sSa82rfId7n4atVpvKx3bY=
 go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace v0.49.0/go.mod h1:f/PbKbRd4cdUICWell6DmzvVJ7QrmBgFrRHjXmAXbK4=
 go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.51.0 h1:Xs2Ncz0gNihqu9iosIZ5SkBbWo5T8JhhLJFMQL1qmLI=
