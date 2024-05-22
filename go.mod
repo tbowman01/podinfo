@@ -35,7 +35,7 @@ require (
 )
 
 // Fix CVE-2022-32149
-replace golang.org/x/text => golang.org/x/text v0.14.0
+replace golang.org/x/text => golang.org/x/text v0.15.0
 
 // Fix CVE-2022-28948
 replace gopkg.in/yaml.v3 => gopkg.in/yaml.v3 v3.0.1
