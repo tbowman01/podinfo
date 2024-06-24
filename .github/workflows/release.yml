@@ -80,7 +80,7 @@ jobs:
             type=raw,value=${{ steps.prep.outputs.VERSION }}
             type=raw,value=latest
       - name: Publish multi-arch image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           sbom: true
           provenance: true
@@ -123,7 +123,7 @@ jobs:
           # cosign sign ghcr.io/tbowman01/charts/podinfo:${{ steps.prep.outputs.VERSION }} --yes
           # cosign sign ghcr.io/tbowman01/manifests/podinfo:${{ steps.prep.outputs.VERSION }} --yes
       - name: Publish base image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           push: true
           builder: ${{ steps.buildx.outputs.name }}
@@ -163,7 +163,7 @@ jobs:
           echo 'CHANGELOG' > /tmp/release.txt
           github-release-notes -org tbowman01 -repo podinfo -since-latest-release >> /tmp/release.txt
       - name: Publish release
-        uses: goreleaser/goreleaser-action@v5
+        uses: goreleaser/goreleaser-action@v6
         with:
           version: latest
           args: release --release-notes=/tmp/release.txt --skip-validate
